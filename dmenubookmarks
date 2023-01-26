@@ -1,0 +1,25 @@
+#!/bin/sh
+
+declare -a options=(
+
+"1 - https://youtube.com"
+"2 - https://outlook.office365.com/mail/"
+"3 - https://web.skype.com/"
+"4 - https://www.amazon.co.uk/vine/vine-reviews"
+"5 - https://app.senecalearning.com/dashboard/courses/your-courses"
+"6 - https://excellencelondon.fireflycloud.net/set-tasks"
+"7 - https://mail.protonmail.com/u/0/all-mail"
+"8 - https://lae.sharepoint.com/sites/LAEconomics"
+"9 - https://monkeytype.com/"
+"10 - https://github.com/pandora1000"
+"11 - https://writershelpingwriters.net/"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -l 20 -p 'Bookmarks')
+
+if [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+    $BROWSER "$cfg"
+else
+    exit 1
+fi

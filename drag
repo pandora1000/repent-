@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dragon -a -x "$@" 2>/dev/null &

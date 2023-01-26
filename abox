@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+read -r text
+Title() {
+	printf -v Bar '%*s' $((${#1} + 6)) ' '
+	Bar=${Bar// /#}
+	printf '%s\n## %s ##\n%s\n' "$Bar" "$1" "$Bar"
+}
+
+Title $text

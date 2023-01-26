@@ -1,0 +1,16 @@
+#!/bin/bash
+cmd=(dialog --keep-tite --menu "Select options:" 22 76 16) options=(1 "Edit text ✍️"
+    2 "Read book 📖")
+
+choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+for choice in $choices
+do
+    case $choice in
+        1)
+			nvim $(fzf --header="Edit a file: " --info=inline --preview 'bat --style=numbers --color=always --line-range :500 {}')
+            ;;
+        2)
+			find $LIBRARY -type f \( -iname \*.pdf -o -iname \*.epub \) | devour zathura $(fzf --header="Open a document: " --info=inline)
+            ;;
+    esac
+done
